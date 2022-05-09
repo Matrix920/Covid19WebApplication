@@ -1,0 +1,130 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Covid19Website.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderTitle" runat="server"></asp:ContentPlaceHolder>
+    </title>
+    <style>
+        header,footer{
+            display:block;
+        }
+        header{
+            background:url("Picture/covid19last.jpg") ;
+            height:300px;
+            width:100%;
+        }
+        footer{
+            padding:40px;
+            text-align:center;
+            background-color:black;
+            color:white;
+        }
+        footer p{
+            font-size:18px;
+        }
+        
+
+.container .btn1 {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+
+  display:inline-block;
+            width:40%;
+            padding-top:50px;
+            padding-bottom:50px;
+            margin:5px;
+            border:1px solid white;
+            color:white;
+            background-color:inherit;
+            font-size:25px;
+
+}
+
+.container .btn2 {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+
+  display:inline-block;
+            width:40%;
+            padding-top:50px;
+            padding-bottom:50px;
+            margin:5px;
+            border:1px solid white;
+            color:white;
+            background-color:inherit;
+            font-size:25px;
+
+}
+
+input[type=submit]:hover{
+    background-color:white;
+            color:#ff0000;
+            border-color:#ff0000;
+            cursor:pointer;
+}
+.n{
+padding:20px;
+display:inline-block;
+
+}
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="Style/Master.css">
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <form id="form1" runat="server">
+    <div class="container">
+            <header>
+        </header>
+        <div class="topnav">
+  <a class="active" href="Default.aspx">الصفحة الرئيسية</a>
+  <a href="reg_sick.aspx">تسجيل مصاب</a>
+  <a href="nationality.aspx">عرض الجنسيات</a>
+  <a href="view_sick.aspx">عرض المصابين المسجلين</a>
+</div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolderContent" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        <footer>
+          
+                <div class='n'>
+                </div>    
+             <div class='n'> 
+
+             </div>
+            
+        </footer>
+
+        
+    </div>
+    </form>
+</body>
+</html>

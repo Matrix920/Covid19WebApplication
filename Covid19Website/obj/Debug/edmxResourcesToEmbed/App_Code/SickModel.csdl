@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SickModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Nationality">
+    <Key>
+      <PropertyRef Name="NationalityID" />
+    </Key>
+    <Property Name="NationalityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NationalityCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="NationalityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Sicks" Relationship="Self.FK_Sicks_Nationalities" FromRole="Nationalities" ToRole="Sicks" />
+  </EntityType>
+  <EntityType Name="Sick">
+    <Key>
+      <PropertyRef Name="SickID" />
+    </Key>
+    <Property Name="SickID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NationalityID" Type="Int32" Nullable="false" />
+    <Property Name="SickDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Nationality" Relationship="Self.FK_Sicks_Nationalities" FromRole="Sicks" ToRole="Nationalities" />
+  </EntityType>
+  <Association Name="FK_Sicks_Nationalities">
+    <End Role="Nationalities" Type="Self.Nationality" Multiplicity="1" />
+    <End Role="Sicks" Type="Self.Sick" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nationalities">
+        <PropertyRef Name="NationalityID" />
+      </Principal>
+      <Dependent Role="Sicks">
+        <PropertyRef Name="NationalityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SickEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Nationalities" EntityType="Self.Nationality" />
+    <EntitySet Name="Sicks" EntityType="Self.Sick" />
+    <AssociationSet Name="FK_Sicks_Nationalities" Association="Self.FK_Sicks_Nationalities">
+      <End Role="Nationalities" EntitySet="Nationalities" />
+      <End Role="Sicks" EntitySet="Sicks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

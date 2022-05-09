@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SickModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Nationalities">
+    <Key>
+      <PropertyRef Name="NationalityID" />
+    </Key>
+    <Property Name="NationalityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NationalityCode" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="NationalityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sicks">
+    <Key>
+      <PropertyRef Name="SickID" />
+    </Key>
+    <Property Name="SickID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tel" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="NationalityID" Type="int" Nullable="false" />
+    <Property Name="SickDate" Type="date" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Sicks_Nationalities">
+    <End Role="Nationalities" Type="Self.Nationalities" Multiplicity="1" />
+    <End Role="Sicks" Type="Self.Sicks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nationalities">
+        <PropertyRef Name="NationalityID" />
+      </Principal>
+      <Dependent Role="Sicks">
+        <PropertyRef Name="NationalityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SickModelStoreContainer">
+    <EntitySet Name="Nationalities" EntityType="Self.Nationalities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sicks" EntityType="Self.Sicks" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Sicks_Nationalities" Association="Self.FK_Sicks_Nationalities">
+      <End Role="Nationalities" EntitySet="Nationalities" />
+      <End Role="Sicks" EntitySet="Sicks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
